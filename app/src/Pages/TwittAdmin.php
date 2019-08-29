@@ -6,6 +6,7 @@ namespace {
 
     class TwittAdmin extends ModelAdmin
     {
+        //* The title of the tab and what class is included
         private static $menu_title = "Twitts";
 
         private static $url_segment = "twitts";
@@ -15,7 +16,7 @@ namespace {
         ];
 
         private static $summary_field = [
-            'Time' => 'Time',
+            'Time' => 'Datetime',
         ];
     }
 }

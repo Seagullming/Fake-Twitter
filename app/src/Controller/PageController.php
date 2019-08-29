@@ -10,6 +10,7 @@ namespace {
     use SilverStripe\Forms\FormAction;
     use SilverStripe\Forms\RequiredFields;
     use SilverStripe\Forms\TextareaField;
+    use SilverStripe\Forms\TextField;
     use SilverStripe\View\Requirements;
 
     class PageController extends ContentController
@@ -44,7 +45,7 @@ namespace {
             'TwittForm'
         ];
 
-
+        //* Structure of posting new form
         public function TwittForm()
         {
             $form = Form::create(
@@ -53,7 +54,9 @@ namespace {
                 FieldList::create(
                     TextareaField::create('TwittContent', '')
                         ->setAttribute('placeholder', 'TwittContent'),
-                    UploadField::create('TwittImage','')
+                    TextField::create('Hashtag', '')
+                        ->setAttribute('placeholder', 'Hashtag'),
+                    UploadField::create('TwittImage', '')
                 ),
 
 
@@ -61,7 +64,7 @@ namespace {
                     FormAction::create('HandleTwittsPost', 'Post')
                         ->setUseButtonTag(true)
                 ),
-                RequiredFields::create('TwittContent')
+                RequiredFields::create('TwittContent', 'Hashtag')
             );
 
             return $form;
@@ -80,9 +83,50 @@ namespace {
             $this->redirectBack();
         }
 
+        public function CommentForm()
+        {
+            $form = Form::create(
+                $this,
+                'CommentForm',
+                FieldList::create(
+                    TextareaField::create('CommentContent', '')
+                        ->setAttribute('placeholder', 'CommentContent')
+                ),
+
+                FieldList::create(
+                    FormAction::create('HandleCommentsPost', 'Post')
+                        ->setUseButtonTag(true)
+                ),
+                RequiredFields::create('CommentContent')
+            );
+
+            return $form;
+        }
+
+        public function HandleCommentsPost($data, $form)
+        {
+            Debug::show($data);
+            Debug::show($_FILES);
+            $comment = Comment::create();
+            $form->saveInto($comment);
+            $comment->write();
+            $comment->CommentID = $this->ID;
+            $form->sessionMessage('Thanks for posting', 'good');
+
+            $this->redirectBack();
+        }
+
+
         public function getTwitts()
         {
             return Twitt::get();
         }
+
+        public function getHashtags()
+        {
+            return Hashtag::get();
+        }
+       
+        
     }
 }

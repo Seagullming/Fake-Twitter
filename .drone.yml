@@ -1,0 +1,29 @@
+kind: pipeline
+name: default
+
+steps:
+- name: install
+  image: brettt89/silverstripe-web:7.1-platform
+  commands:
+    - composer install
+    - composer require phpunit/phpunit ~5.7
+    - composer require silverstripe/sqlite3 ^2
+
+- name: test
+  image: brettt89/silverstripe-web:7.1-platform
+  commands:
+  - vendor/bin/sake dev/build
+  - vendor/bin/phpunit app/tests/
+  environment:
+    SS_DATABASE_CLASS: SQLite3Database
+    SS_DATABASE_NAME: SS_twitt
+    SS_DATABASE_PASSWORD: none
+    SS_DATABASE_SERVER: none
+    SS_DATABASE_USERNAME: none
+    SS_DATABASE_PATH: ":memory:"
+
+- name: Code Analysis
+  image: aosapps/drone-sonar-plugin
+  settings:
+    sonar_host: "https://sonar.littlemonkey.co.nz"
+    sonar_token: 4598c67c3f33d383cddea5d08e0ebcbd1edcb8ca

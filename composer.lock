@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7972c22339ddf66c4ddc0fa3eb129cf",
+    "content-hash": "0d75e8621e4583c2307ffd647e23cbda",
     "packages": [
         {
             "name": "bramus/ansi-php",
@@ -2213,6 +2213,69 @@
                 "mailer"
             ],
             "time": "2018-07-31T09:26:32+00:00"
+        },
+        {
+            "name": "symbiote/silverstripe-memberprofiles",
+            "version": "4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symbiote/silverstripe-memberprofiles.git",
+                "reference": "78afc584a1a3f5850f845943f23b233bf1898b81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symbiote/silverstripe-memberprofiles/zipball/78afc584a1a3f5850f845943f23b233bf1898b81",
+                "reference": "78afc584a1a3f5850f845943f23b233bf1898b81",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "silverstripe/cms": "^4.0"
+            },
+            "replace": {
+                "ajshort/silverstripe-memberprofiles": "self.version",
+                "silverstripe-australia/memberprofiles": "self.version",
+                "silverstripe/memberprofiles": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "suggest": {
+                "symbiote/silverstripe-gridfieldextensions": "Allows drag-and-drop reordering of fields"
+            },
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "expose": [
+                    "client"
+                ],
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symbiote\\MemberProfiles\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Symbiote",
+                    "homepage": "https://www.symbiote.com.au/"
+                }
+            ],
+            "description": "Member registration and profile management",
+            "keywords": [
+                "member",
+                "profile",
+                "registration",
+                "silverstripe"
+            ],
+            "time": "2019-01-25T01:44:53+00:00"
         },
         {
             "name": "symfony/cache",

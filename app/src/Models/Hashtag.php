@@ -8,14 +8,17 @@ namespace {
 
     class Hashtag extends DataObject
     {
+        //* Only need title for the Hashtag at the moment
         private static $db = [
             'Title' => 'Varchar',
         ];
 
-        private static $belong_many_many = [
+        //* Each Category has several Twitts
+        private static $belongs_many_many = [
             'Twitts' => Twitt::class,
         ];
 
+        //*Create Interface to manage the categories
         public function getCMSFields()
         {
             return FieldList::Create(

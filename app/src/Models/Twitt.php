@@ -8,21 +8,26 @@ namespace {
 
     class Twitt extends DataObject
     {
-        private static $db = [
-            'Time' => 'Time',
-            'TwittContent' => 'Text',
-        ];
 
-        private static $has_one = [
-            'TwittPage' => TwittPage::class,
+        //*Data structure for each Twitt
+
+        private static $db = [
+            'Time' => 'Datetime',
+            'TwittContent' => 'Text',
         ];
 
         private static $has_many = array(
             'TwittImage' => TwittImage::class
         );
+
+        private static $many_many = [
+            'Hashtags' => Hashtag::class,
+        ];
+
+      
     }
 
-
+    //* Add TwittID property to Image datatable
 
     class TwittImage extends Image
     {
