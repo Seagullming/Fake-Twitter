@@ -54,7 +54,7 @@ namespace {
                 FieldList::create(
                     TextareaField::create('TwittContent', '')
                         ->setAttribute('placeholder', 'TwittContent'),
-                    TextField::create('Hashtag', '')
+                    TextField::create('HashtagTitle', '')
                         ->setAttribute('placeholder', 'Hashtag'),
                     UploadField::create('TwittImage', '')
                 ),
@@ -64,6 +64,7 @@ namespace {
                     FormAction::create('HandleTwittsPost', 'Post')
                         ->setUseButtonTag(true)
                 ),
+
                 RequiredFields::create('TwittContent', 'Hashtag')
             );
 
@@ -72,16 +73,20 @@ namespace {
 
         public function HandleTwittsPost($data, $form)
         {
-            Debug::show($data);
-            Debug::show($_FILES);
-            $singletwitt = Twitt::create();
-            $form->saveInto($singletwitt);
-            $singletwitt->write();
-            $singletwitt->TwittPageID = $this->ID;
-            $form->sessionMessage('Thanks for posting', 'good');
 
+            $twitt = Twitt::create();
+            $hashtag = Hashtag::create();
+            $twitt->TwittContent = $data['TwittContent'];
+            $hashtag->Title = $data['HashtagTitle'];
+            $twitt->write();
+            $hashtag->write();
+            $twitt->ID = $this->ID;
+            $hashtag->ID = $this->ID;
+            $form->sessionMessage('Thanks for posting', 'good');
             $this->redirectBack();
         }
+
+       
 
         public function CommentForm()
         {
@@ -126,7 +131,10 @@ namespace {
         {
             return Hashtag::get();
         }
-       
-        
+
+        public function getUser()
+        {
+            return Member::get();
+        }
     }
 }

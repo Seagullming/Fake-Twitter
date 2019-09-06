@@ -4,3 +4,6 @@ Name: myproject
 SilverStripe\Core\Manifest\ModuleManifest:
   project: app
 
+SilverStripe\Security\Member:
+    extensions:
+        - UserExtension

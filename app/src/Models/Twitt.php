@@ -12,7 +12,6 @@ namespace {
         //*Data structure for each Twitt
 
         private static $db = [
-            'Time' => 'Datetime',
             'TwittContent' => 'Text',
         ];
 
@@ -23,7 +22,6 @@ namespace {
         private static $many_many = [
             'Hashtags' => Hashtag::class,
         ];
-
       
     }
 
