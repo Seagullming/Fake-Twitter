@@ -16,7 +16,8 @@ namespace {
         ];
 
         private static $has_many = array(
-            'TwittImage' => TwittImage::class
+            'TwittImage' => TwittImage::class,
+            'Comments' => Comment::class
         );
 
         private static $many_many = [

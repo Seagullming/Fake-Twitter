@@ -12,11 +12,13 @@ namespace {
         private static $url_segment = "twitts";
 
         private static $managed_models = [
-            Twitt::class,
+            Twitt::class,  
         ];
 
         private static $summary_field = [
             'Time' => 'Datetime',
         ];
+       
     }
+    
 }
